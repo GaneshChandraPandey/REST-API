@@ -7,9 +7,17 @@ const morgan = require("morgan");
 
 dotenv.config();
 
-    mongoose.connect(process.env.MONGO_URL);
-    console.log("Connected to Mongo Successfully!");
+    // mongoose.connect(process.env.MONGO_URL);
+    // console.log("Connected to Mongo Successfully!");
   
+    try {
+        mongoose.set("strictQuery", false);
+        mongoose.connect(process.env.MONGO_URL);
+        console.log("Connected to Mongo Successfully!");
+      } catch (error) {
+        console.log(error);
+      }
+    
 
 app.listen(8800,()=>{
     console.log("Backend server is running");
